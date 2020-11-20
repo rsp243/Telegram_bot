@@ -1,30 +1,31 @@
 import telebot
-from telebot import types
-bot = telebot.TeleBot('926414545:AAH8KbWEVavTkXQAtHgyJk7U9zDSce0jiXk')
+bot = telebot.TeleBot('')
 spis = ["Север", "Запад", "Юг", "Восток"]
 n = 0
-r = 0
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(commands=['start'])
 def get_text_messages(message):
-    global n
-    bot.send_message(message.from_user.id, spis[n])
-    bot.send_message(message.from_user.id, 'Здравствуйте, Вы смотрите на север')
-    bot.send_message(message.from_user.id, text="Внимание, после каждого поворота пишите, что развернулись!")
-    klava = types.InlineKeyboardMarkup()
-    button1 = types.InlineKeyboardButton(text='Влево', callback_data='left')
-    button2 = types.InlineKeyboardButton(text='Вправо', callback_data='right')
+    bot.send_message(message.from_user.id, 'Здравствуйте, Вы смотрите на север.')
+    klava = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    button1 = telebot.types.InlineKeyboardButton(text='Влево')
+    button2 = telebot.types.InlineKeyboardButton(text='Вправо')
     klava.add(button1)
     klava.add(button2)
-    bot.send_message(message.from_user.id, text="Куда вы повернулись?", reply_markup=klava)
-@bot.callback_query_handler(func=lambda call: True)
-def callback_worker(call):
+    bot.send_message(message.from_user.id, 'Если Вы повернулись куда-то, нажмите соответствующую кнопку.',  reply_markup=klava)
+@bot.message_handler(content_types=['text'])
+def welcome(message):
     global n
-    if call.data == "left":
+    if message.text == 'Влево':
         n -= 1
-    elif call.data == "right":
+    else:
         n += 1
-    if n < 0:
+    if n == -1:
         n = 3
-    if n > 3:
+    if n == 4:
         n = 0
+    klava = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    button1 = telebot.types.InlineKeyboardButton(text='Влево')
+    button2 = telebot.types.InlineKeyboardButton(text='Вправо')
+    klava.add(button1)
+    klava.add(button2)
+    bot.send_message(message.from_user.id, text=f'Вы смотрите на {spis[n]}', reply_markup=klava)
 bot.polling()
