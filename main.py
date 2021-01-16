@@ -22,11 +22,10 @@ def formMarkup(id):
 
 def sendMessage(id, message):
     keyboard = formMarkup(id)
-    for i in range(len(quest)):
-        if id == quest[i]['id']:
-            if quest[i]["message_before_question"] != '':
-                bot.send_message(message.chat.id, f'{quest[i]["message_before_question"]}')
-            bot.reply_to(message, f'{quest[i]["text"]}', reply_markup=keyboard)
+    if id == quest[i]['id']:
+        if quest[i]["message_before_question"] != '':
+            bot.send_message(message.chat.id, f'{quest[i]["message_before_question"]}')
+        bot.reply_to(message, f'{quest[i]["text"]}', reply_markup=keyboard)
 
 
 @bot.message_handler(commands=['start', 'help'])
