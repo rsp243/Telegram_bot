@@ -29,7 +29,7 @@ def sendMessage(id, message):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    id = 5
+    id = 0
     sendMessage(id, message)
 
 
