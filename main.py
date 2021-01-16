@@ -41,7 +41,7 @@ def echo_all(message):
                 if ans[i]['text'] == message.text:
                     sendMessage(ans[i]['goto'] - 1, message)
     except:
-        bot.send_message(message.chat.id, 'Что-то пошло не так, обратитесь через почту к создателю этого бота -> reshetov.semjon@gmail.com')
+        bot.send_message(message.chat.id, 'Диалог дальше ещё не сформирован администраторы уже работают над этим, обратитесь через почту к создателю этого бота -> reshetov.semjon@gmail.com')
 
 
 bot.polling()
