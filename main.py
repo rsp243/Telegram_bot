@@ -10,20 +10,18 @@ bot = telebot.TeleBot(os.environ['token'])
 
 def formMarkup(id):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    a = list()
     for i in quest[id]['answers']:
         for j in range(len(ans)):
             if i == ans[j]['id']:
                 item = types.KeyboardButton(ans[j]['text'])
-        a.append(i)
         markup.add(item)
     return markup
 
 
 def sendMessage(id, message):
-    keyboard = formMarkup(id)
     for j in range(len(quest)):
-        if quest[j]['id'] == id
+        if quest[j]['id'] == id:
+            keyboard = formMarkup(j)
             if quest[j]["message_before_question"] != '':
                 bot.send_message(message.chat.id, f'{quest[j]["message_before_question"]}')
             bot.reply_to(message, f'{quest[j]["text"]}', reply_markup=keyboard)
