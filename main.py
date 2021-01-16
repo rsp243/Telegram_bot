@@ -23,9 +23,9 @@ def sendMessage(id, message):
     for j in range(len(ans)):
         if ans[j]['id'] == id:
             id = j
-        if quest[id]["message_before_question"] != '':
-            bot.send_message(message.chat.id, f'{quest[id]["message_before_question"]}')
-        bot.reply_to(message, f'{quest[id]["text"]}', reply_markup=keyboard)
+            if quest[id]["message_before_question"] != '':
+                bot.send_message(message.chat.id, f'{quest[id]["message_before_question"]}')
+            bot.reply_to(message, f'{quest[id]["text"]}', reply_markup=keyboard)
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
