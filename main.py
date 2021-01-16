@@ -36,7 +36,7 @@ def echo_all(message):
         if message.chat.type == 'private':
             for i in range(len(ans)):
                 if ans[i]['text'] == message.text:
-                    sendMessage(ans[i]['goto'] - 1, message)
+                    sendMessage(ans[i]['goto'] - 2, message)
     except:
         bot.send_message(message.chat.id, 'Диалог дальше ещё не сформирован, администраторы уже работают над этим, обратитесь через почту к создателю этого бота -> reshetov.semjon@gmail.com')
 
