@@ -1,11 +1,11 @@
 import telebot, requests
 from telebot import types
-import crids
+import os
 
-quest = crids.jsonToQuest
-ans = crids.jsonToAns
+quest = os.environ['jsonToQuest']
+ans = os.environ['jsonToAns']
 
-bot = telebot.TeleBot(crids.token)
+bot = telebot.TeleBot(os.environ['token'])
 
 
 def formMarkup(id):
