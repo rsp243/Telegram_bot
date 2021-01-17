@@ -40,8 +40,7 @@ def sendMessage(id, message):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    id = 1
-    sendMessage(id, message)
+    sendMessage(1, message)
 
 
 @bot.message_handler(func=lambda message: True)
