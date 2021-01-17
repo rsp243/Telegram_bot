@@ -2,8 +2,8 @@ import telebot, requests
 from telebot import types
 import os
 
-quest = os.environ['jsonToQuest']
-ans = os.environ['jsonToAns']
+quest = requests.get(os.environ['jsonToQuest']).json()
+ans = requests.get(os.environ['jsonToAns']).json()
 
 bot = telebot.TeleBot(os.environ['token'])
 
@@ -25,7 +25,7 @@ keyboardStart.add('В самое начало')
 def sendMessage(id, message):
     k = 0
     for j in range(len(quest)):
-        if quest[j]['id'] == id:
+        if quest[j]["id"] == id:
             k += 1
             keyboard = formMarkup(j)
             if quest[j]["message_before_question"] != '':
