@@ -51,9 +51,6 @@ def echo_all(message):
                 sendMessage(ans[i]['goto'], message)
         if message.text == 'В самое начало':
             sendMessage(1, message)
-        if message.text == 'Давай':
-            bot.send_message(message.chat.id, 'Внимательно просмотри карту, а лучше сохрани!')
-            bot.send_photo(message.chat.id, 'https://disk.yandex.ru/client/recent?idApp=client&dialog=slider&idDialog=%2Fdisk%2F%D0%94%D0%BB%D1%8F%20%D1%88%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%8C%D1%82%D0%B5%D0%B2%D0%BE%20%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB.jpg')
-            sendMessage(3, message)
+
 
 bot.polling()
