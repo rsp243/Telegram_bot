@@ -14,7 +14,7 @@ def formMarkup(id):
         for j in range(len(ans)):
             if i == ans[j]['id']:
                 item = types.KeyboardButton(ans[j]['text'])
-        markup.add(item)
+                markup.add(item)
     return markup
 
 
