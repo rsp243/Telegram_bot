@@ -2,11 +2,10 @@ import telebot, requests
 from telebot import types
 import os
 
-quest = requests.get(os.environ['jsonToQuest']).json()
-ans = requests.get(os.environ['jsonToAns']).json()
+global quest
+global ans
 
 bot = telebot.TeleBot(os.environ['token'])
-
 
 def formMarkup(id):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -40,6 +39,8 @@ def sendMessage(id, message):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
+    quest = requests.get(os.environ['jsonToQuest']).json()
+    ans = requests.get(os.environ['jsonToAns']).json()
     sendMessage(1, message)
 
 
