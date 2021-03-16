@@ -2,8 +2,9 @@ import telebot, requests
 from telebot import types
 import os
 
-global quest
-global ans
+
+quest = requests.get(os.environ['jsonToQuest']).json()
+ans = requests.get(os.environ['jsonToAns']).json()
 
 bot = telebot.TeleBot(os.environ['token'])
 
