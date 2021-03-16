@@ -43,7 +43,7 @@ def send_welcome(message):
     quest = requests.get(os.environ['jsonToQuest']).json()
     ans = requests.get(os.environ['jsonToAns']).json()
     sendMessage(1, message)
-
+    return quest, ans
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
