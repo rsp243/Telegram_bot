@@ -58,8 +58,9 @@ def echo_all(message):
             if ans[i]['text'] == message.text:
                 sendMessage(ans[i]['goto'], message)
         if message.text == 'В самое начало':
-            sendMessage(1, message)
             uploadInfo()
+            sendMessage(1, message)
+
 
 
 bot.polling()
