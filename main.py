@@ -8,6 +8,13 @@ ans = requests.get(os.environ['jsonToAns']).json()
 
 bot = telebot.TeleBot(os.environ['token'])
 
+def uploadInfo():
+    global quest
+    global ans
+    quest = requests.get(os.environ['jsonToQuest']).json()
+    ans = requests.get(os.environ['jsonToAns']).json()
+
+
 def formMarkup(id):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     for i in quest[id]['answers']:
@@ -40,10 +47,9 @@ def sendMessage(id, message):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    quest = requests.get(os.environ['jsonToQuest']).json()
-    ans = requests.get(os.environ['jsonToAns']).json()
+    uploadInfo()
     sendMessage(1, message)
-    return quest, ans
+
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
